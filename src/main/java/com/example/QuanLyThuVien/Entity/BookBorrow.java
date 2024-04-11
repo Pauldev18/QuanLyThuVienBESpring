@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class BookBorrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long borrow_id;
+    private int borrow_id;
 
     @ManyToOne
     @JoinColumn(name = "book_id")

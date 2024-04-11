@@ -15,7 +15,7 @@ import lombok.Setter;
 public class LibraryStaff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long staff_id;
+    private int staff_id;
 
     @Column(name = "staff_name")
     private String staffName;

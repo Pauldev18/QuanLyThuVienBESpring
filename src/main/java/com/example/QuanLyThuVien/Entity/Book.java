@@ -15,14 +15,13 @@ import lombok.Setter;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long book_id;
+    private int book_id;
 
     @Column(name = "title")
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
+   @Column(name = "author")
+    private String author;
 
     @ManyToOne
     @JoinColumn(name = "genre_id")

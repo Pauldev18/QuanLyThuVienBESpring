@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class LibraryCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long card_id;
+    private int card_id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

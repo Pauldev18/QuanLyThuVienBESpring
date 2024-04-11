@@ -15,13 +15,16 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private int user_id;
 
     @Column(name = "username")
     private String username;
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "fullname")
+    private String fullname;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
