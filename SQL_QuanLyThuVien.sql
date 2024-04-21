@@ -16,9 +16,9 @@ CREATE TABLE Books (
 );
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    fullname nvarchar(255) not null,
+    user_name VARCHAR(255) NOT NULL,
+    pass_word VARCHAR(255) NOT NULL,
+    full_name nvarchar(255) not null,
     user_role ENUM('admin', 'user') DEFAULT 'user'
 );
 -- Tạo bảng cho thẻ thư viện

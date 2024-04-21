@@ -4,6 +4,8 @@ import com.example.QuanLyThuVien.Entity.User;
 import com.example.QuanLyThuVien.Repository.UserRepository;
 import com.example.QuanLyThuVien.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,26 +21,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String insertUser(User user) {
-        try{
-            User newObj = new User();
-            user.setFullname(user.getFullname());
-            user.setUsername(user.getUsername());
-            user.setPassword(user.getPassword());
-            userRepository.save(user);
-            return "Thêm thaành công";
-        }catch(Exception ex) {
-            return ex.getMessage();
+    public ResponseEntity<?> login(String userName, String passWord) {
+        User user = userRepository.login(userName, passWord);
+        if(user == null){
+            return  new ResponseEntity<>("Tài khoản hoặc mật khẩu không chính xác", HttpStatus.NOT_FOUND);
+        }else{
+            return  new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
         }
     }
 
-    @Override
-    public String updateUser(User user) {
-       return null;
-    }
-
-    @Override
-    public String deleteUser(int idUser) {
-        return null;
-    }
 }
