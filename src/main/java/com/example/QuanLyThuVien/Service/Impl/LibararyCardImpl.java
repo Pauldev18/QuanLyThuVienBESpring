@@ -19,40 +19,42 @@ public class LibararyCardImpl implements LibararyCard {
         return cardRepository.findAll();
     }
 
+
     @Override
     public String insertCard(LibraryCard card) {
-        try{
+        try {
             LibraryCard newObj = new LibraryCard();
-            newObj.setCard_id(0);
             newObj.setCode(card.getCode());
             newObj.setMsv(card.getMsv());
             newObj.setLopQuanLy(card.getLopQuanLy());
+            newObj.setTenSinhVien(card.getTenSinhVien());
             newObj.setIssueDate(card.getIssueDate());
             newObj.setExpiryDate(card.getExpiryDate());
             cardRepository.save(newObj);
             return "Thêm thành công";
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ex.getMessage();
         }
     }
 
     @Override
     public String updateCard(LibraryCard card) {
-        try{
+        try {
             Optional<LibraryCard> libraryCard = cardRepository.findById(card.getCard_id());
-            if(libraryCard.isPresent()){
+            if(libraryCard.isPresent()) {
+                LibraryCard update = libraryCard.get();
+                update.setCode(card.getCode());
+                update.setMsv(card.getMsv());
+                update.setTenSinhVien(card.getTenSinhVien());
+                update.setLopQuanLy(card.getLopQuanLy());
+                update.setIssueDate(card.getIssueDate());
+                update.setExpiryDate(card.getExpiryDate());
+                cardRepository.save(update);
+                return "Update thành công";
+            } else {
                 return "Không tìm thấy card";
             }
-            LibraryCard update = libraryCard.get();
-            update.setCode(card.getCode());
-            update.setMsv(card.getMsv());
-            update.setTenSinhVien(card.getTenSinhVien());
-            update.setLopQuanLy(card.getLopQuanLy());
-            update.setIssueDate(card.getIssueDate());
-            update.setExpiryDate(card.getExpiryDate());
-            cardRepository.save(update);
-            return "Update thành công";
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ex.getMessage();
         }
     }
@@ -62,11 +64,13 @@ public class LibararyCardImpl implements LibararyCard {
         try{
             Optional<LibraryCard> libraryCard = cardRepository.findById(idCard);
             if(libraryCard.isPresent()){
-                return "Không tìm thấy card";
+                LibraryCard update = libraryCard.get();
+                cardRepository.delete(update);
+                return "Xóa thành công";
+            }else{
+                return "Không tìm thấy";
             }
-            LibraryCard update = libraryCard.get();
-            cardRepository.delete(update);
-            return "Xóa thành công";
+
         }catch (Exception ex){
             return ex.getMessage();
         }
