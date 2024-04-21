@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface LibararyCard {
     List<LibraryCard> getAllCard();
-
+    String insertCard(LibraryCard card);
+    String updateCard(LibraryCard card);
+    String deleteCard(int idCard);
 }

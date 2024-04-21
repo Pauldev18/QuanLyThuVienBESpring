@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LibraryStaffRepository extends JpaRepository<LibraryStaff, Integer> {
+    LibraryStaff findById(int id);
 }
